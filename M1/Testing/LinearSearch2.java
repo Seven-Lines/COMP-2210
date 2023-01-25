@@ -1,10 +1,11 @@
 package Testing;
 /**
- * LinearSearch1.java
- * Provides an (incorrect) implementation of linear search.
+ * LinearSearch2.java
+ * Provides an implementation of linear search.
+ *
  */
 
-public final class LinearSearch1 {
+ public final class LinearSearch2 {
 
     /**
      * Returns the index of the first occurence of target in a or
@@ -16,16 +17,12 @@ public final class LinearSearch1 {
      * @return  the index target in a or -1
      */
     public static int search(int[] a, int target) {
-        int i = 0;
-        while ((a[i] != target) && (i < a.length - 1)) {
-            i++;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == target) {
+                return i;
+            }
         }
-        if (a[i] == target) {
-            return i;
-        }
-        else {
-            return -1;
-        }
+        return -1;
     }
 
 }
