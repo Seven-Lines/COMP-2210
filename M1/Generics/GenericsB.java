@@ -31,9 +31,9 @@ public static <T extends Comparable<T>> T min(T[] a){
        // You'll need to change some of these
        // statements once you make the min
        // method generic.
-       Comparable min1 = GenericsB.<Integer>min(a2);
+       Comparable<Integer> min1 = GenericsB.<Integer>min(a2);
        System.out.println(min1);
-       Comparable min2 = GenericsB.<String>min(a3);
+       Comparable<String> min2 = GenericsB.<String>min(a3);
        System.out.println(min2);
    }
 }
