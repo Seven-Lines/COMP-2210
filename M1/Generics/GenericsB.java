@@ -13,9 +13,9 @@ public class GenericsB {
      * find the minimum element of an array of any
      * type of mutually-comparable values.
      */
-   public static Comparable min(Comparable[] a) {
-       Comparable min = a[0];
-       for (Comparable val : a) {
+public static <T extends Comparable<T>> T min(T[] a){
+    T min = a[0];
+       for (T val : a) {
            if (val.compareTo(min) < 0) {
                min = val;
            }
@@ -31,10 +31,9 @@ public class GenericsB {
        // You'll need to change some of these
        // statements once you make the min
        // method generic.
-       Comparable min1 = GenericsB.min(a2);
+       Comparable min1 = GenericsB.<Integer>min(a2);
        System.out.println(min1);
-       Comparable min2 = GenericsB.min(a3);
+       Comparable min2 = GenericsB.<String>min(a3);
        System.out.println(min2);
    }
-
 }
