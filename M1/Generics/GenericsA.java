@@ -14,9 +14,9 @@ public class GenericsA {
      * of any type and return the location of target in a
      * or -1 if it doesn't exist.
      */
-    public static int search(int[] a, int target) {
+    public static <T> int search(T[] a, T target) {
         int i = 0;
-        while ((i < a.length) && (a[i] != target)) {
+        while ((i < a.length) && (a[i].equals(target))) {
             i++;
         }
         if (i < a.length) {
@@ -31,8 +31,8 @@ public class GenericsA {
     public static void main(String[] args) {
         // You'll need to change these statements once
         // you make the search method generic.
-        int[] a1 = {4, 10, 2, 8, 6};
-        int i = GenericsA.search(a1, 8);
+        Integer[] a1 = {4, 10, 2, 8, 6};
+        int i = GenericsA.<Integer>search(a1, 8);
         System.out.println(i);
     }
 
