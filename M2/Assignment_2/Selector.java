@@ -190,9 +190,27 @@ public final class Selector {
      * @throws        IllegalArgumentException as per above
      * @throws        NoSuchElementException as per above
      */
-    public static <T> Collection<T> range(Collection<T> coll, T low, T high,
-                                                      Comparator<T> comp) {
-        return null;
+    public static <T> Collection<T> range(Collection<T> coll, T low, T high, Comparator<T> comp) {
+        if (coll == null || comp == null) { throw new IllegalArgumentException(); }
+        if (coll.isEmpty()) { throw new NoSuchElementException(); }
+
+        ArrayList<T> list_copy = new ArrayList<T>(); 
+        Iterator<T> it = coll.iterator(); 
+        int total = 0; 
+        while (it.hasNext()) { 
+            T temp = it.next(); 
+            if(comp.compare(temp, low) >= 0 && comp.compare(temp, high) <= 0) { 
+                list_copy.add(temp);
+                total++;  
+            } 
+        }
+
+        if (total == 0) { 
+            throw new NoSuchElementException(); 
+        } else { 
+            return list_copy; 
+        }
+
     }
 
 
@@ -212,7 +230,29 @@ public final class Selector {
      * @throws        NoSuchElementException as per above
      */
     public static <T> T ceiling(Collection<T> coll, T key, Comparator<T> comp) {
-        return null;
+        if (coll == null || comp == null) { throw new IllegalArgumentException(); }
+        if (coll.isEmpty()) { throw new NoSuchElementException(); }
+
+        Iterator<T> it = coll.iterator();         
+        
+        T temp = null; 
+        T ceiling = null; 
+        boolean ceiling_found = false; 
+        while (it.hasNext()) { 
+            temp = it.next(); 
+            if (!ceiling_found && comp.compare(temp, key) >= 0) { 
+                ceiling = temp;
+                ceiling_found = true;
+            } else if (comp.compare(temp, key) >= 0 && comp.compare(temp, ceiling) <= 0) { 
+                ceiling = temp;
+            }
+        }
+
+        if (!ceiling_found) { 
+            throw new NoSuchElementException(); 
+        } else { 
+            return ceiling; 
+        }
     }
 
 
@@ -232,7 +272,29 @@ public final class Selector {
      * @throws        NoSuchElementException as per above
      */
     public static <T> T floor(Collection<T> coll, T key, Comparator<T> comp) {
-        return null;
+        if (coll == null || comp == null) { throw new IllegalArgumentException(); }
+        if (coll.isEmpty()) { throw new NoSuchElementException(); }
+
+        Iterator<T> it = coll.iterator();         
+        
+        T temp = null; 
+        T floor = null; 
+        boolean floor_found = false; 
+        while (it.hasNext()) { 
+            temp = it.next(); 
+            if (!floor_found && comp.compare(temp, key) <= 0) { 
+                floor = temp;
+                floor_found = true;
+            } else if (comp.compare(temp, key) <= 0 && comp.compare(temp, floor) <= 0) { 
+                floor = temp;
+            }
+        }
+
+        if (!floor_found) { 
+            throw new NoSuchElementException(); 
+        } else { 
+            return floor; 
+        }
     }
 
 }
