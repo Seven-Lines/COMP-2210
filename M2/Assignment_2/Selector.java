@@ -63,7 +63,18 @@ public final class Selector {
      * @throws        NoSuchElementException as per above
      */
     public static <T> T max(Collection<T> coll, Comparator<T> comp) {
-        return null;
+        if (coll == null || comp == null) { throw new IllegalArgumentException(); }
+        if (coll.isEmpty()) { throw new NoSuchElementException(); }
+
+        Iterator<T> it = coll.iterator();
+        T max = it.next(); 
+        while (it.hasNext()) { 
+            T temp = it.next(); 
+            if (comp.compare(temp, max) > 0){ 
+                max = temp; 
+            }
+        }
+        return max; 
     }
 
 
