@@ -93,7 +93,34 @@ public final class Selector {
      * @throws        NoSuchElementException as per above
      */
     public static <T> T kmin(Collection<T> coll, int k, Comparator<T> comp) {
-        return null;
+        if (coll == null || comp == null) { throw new IllegalArgumentException(); }
+        if (coll.isEmpty()) { throw new NoSuchElementException(); }
+        if (k < 1 || k > coll.size()) { throw new NoSuchElementException(); }
+
+        ArrayList<T> list_copy = new ArrayList<T>(); 
+        Iterator<T> it = coll.iterator(); 
+        while (it.hasNext()) { list_copy.add(it.next()); }
+
+        java.util.Collections.sort(list_copy, comp);
+        
+        if (k == 1) { return list_copy.get(0); } 
+        
+        T temp = list_copy.get(0); 
+        T kmin = null; 
+        int index = 1; 
+        for (int i = 1; i < list_copy.size(); i++){ 
+            if (!list_copy.get(i).equals(temp)) { 
+                index++; 
+                if (k == index) { kmin = list_copy.get(i); }
+            }
+            temp = list_copy.get(i);
+        }
+        
+        if (index < k) {
+            throw new NoSuchElementException(); 
+        } else { 
+            return kmin;
+        }
     }
 
 
