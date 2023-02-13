@@ -285,7 +285,7 @@ public final class Selector {
             if (!floor_found && comp.compare(temp, key) <= 0) { 
                 floor = temp;
                 floor_found = true;
-            } else if (comp.compare(temp, key) <= 0 && comp.compare(temp, floor) <= 0) { 
+            } else if (comp.compare(temp, key) <= 0 && comp.compare(temp, floor) >= 0) { 
                 floor = temp;
             }
         }
