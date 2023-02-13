@@ -139,7 +139,35 @@ public final class Selector {
      * @throws        NoSuchElementException as per above
      */
     public static <T> T kmax(Collection<T> coll, int k, Comparator<T> comp) {
-        return null;
+        if (coll == null || comp == null) { throw new IllegalArgumentException(); }
+        if (coll.isEmpty()) { throw new NoSuchElementException(); }
+        if (k < 1 || k > coll.size()) { throw new NoSuchElementException(); }
+
+        ArrayList<T> list_copy = new ArrayList<T>(); 
+        Iterator<T> it = coll.iterator(); 
+        while (it.hasNext()) { list_copy.add(it.next()); }
+
+        java.util.Collections.sort(list_copy, comp);
+        
+        if (k == 1) { return list_copy.get(list_copy.size() - 1); }
+        
+        T temp = list_copy.get(list_copy.size() - 1); 
+        T kmax = null; 
+        int index = 1; 
+
+        for (int i = list_copy.size() - 2; i >= 0; i--) { 
+            if (!list_copy.get(i).equals(temp)) { 
+                index++; 
+                if (k == index) { kmax = list_copy.get(i); }
+            }
+            temp = list_copy.get(i);
+        }
+
+        if (index < k) { 
+            throw new NoSuchElementException();
+        } else {
+            return kmax; 
+        }
     }
 
 
