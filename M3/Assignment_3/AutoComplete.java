@@ -27,14 +27,22 @@ public class Autocomplete {
 	public Term[] allMatches(String prefix) {
         if (prefix == null) { throw new NullPointerException(); }
 
+        int numPrefixes = 0;  
         Term[] tempPrefixes = new Term[terms.length]; 
-        for(int i = 0, numPrefixes = 0; i < terms.length; i++) { 
-            if (terms[i].query.startsWith(prefix)) { 
+        for(int i = 0; i < terms.length; i++) { 
+            if (terms[i].getQuery().startsWith(prefix)) { 
                 tempPrefixes[i] = terms[i];
                 numPrefixes++;  
             }
         } 
+
+        Term[] prefixes = new Term[numPrefixes];
+        for (int i = 0; i < numPrefixes; i++) { 
+            prefixes[i] = tempPrefixes[i];
+        }
+
+        Arrays.sort(prefixes, Term.byDescendingWeightOrder()); 
+
+        return prefixes; 
     }
-
 }
-

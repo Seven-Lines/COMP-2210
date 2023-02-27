@@ -15,7 +15,7 @@ public class Term implements Comparable<Term> {
      * and an IllegalArgumentException if weight is negative.
      */
     public Term(String queryInput, long weightInput) {
-        if (query == null) { throw new NullPointerException(); } 
+        if (query == null || query == "") { throw new NullPointerException(); } 
         if (weightInput < 0) { throw new IllegalArgumentException(); }
         
         query = queryInput; 
@@ -72,6 +72,8 @@ public class Term implements Comparable<Term> {
     public String toString(){
         return query + "\t" + weight.toString();
     }
+
+    public String getQuery(){ return query; }
 
 }
 
