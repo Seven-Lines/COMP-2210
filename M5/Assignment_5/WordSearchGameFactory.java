@@ -10,11 +10,6 @@ public class WordSearchGameFactory {
      * interface.
      */
     public static WordSearchGame createGame() {
-        // You must return an instance of your solution class here.
+        return new WordSearch();
     }
-}
-
-public class WordSearch {
-
-    
 }
