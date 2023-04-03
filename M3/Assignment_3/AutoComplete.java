@@ -2,11 +2,10 @@ package M3.Assignment_3;
 
 import java.util.Arrays;
 
-
 /**
  * Autocomplete.
  */
-public class Autocomplete {
+public class AutoComplete {
 
 	private Term[] terms;
 
@@ -14,7 +13,7 @@ public class Autocomplete {
 	 * Initializes a data structure from the given array of terms.
 	 * This method throws a NullPointerException if terms is null.
 	 */
-	public Autocomplete(Term[] termsInput) {
+	public void Autocomplete(Term[] termsInput) {
         if (termsInput == null) { throw new NullPointerException(); }
 
         terms = termsInput; 
